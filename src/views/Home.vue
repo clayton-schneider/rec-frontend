@@ -1,18 +1,30 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <v-content>
+      <v-row justify="center">
+        <h1>Marketing</h1>
+      </v-row>
+      <v-row justify="center">
+        <v-btn color="primary" :href="`${backendURL}auth/linkedin`"
+          ><v-icon class="mr-4">mdi-linkedin</v-icon>Login with LinkedIn</v-btn
+        >
+      </v-row>
+    </v-content>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+  computed: {
+    backendURL() {
+      return this.$store.state.baseURL;
+    },
+  },
+  methods: {
+    login() {
+      this.$store.dispatch('login');
+    },
+  },
+};
 </script>
