@@ -1,7 +1,7 @@
 <template>
   <div class="write-rec">
     <v-content v-if="rec">
-      <h1>Letter of recommendation for: {{ rec._id }}</h1>
+      <h1>Write letter of recommendation</h1>
 
       <v-card class="mx-auto mb-4" outlined max-width="500">
         <v-card-text>

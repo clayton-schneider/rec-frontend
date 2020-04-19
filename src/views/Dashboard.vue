@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <v-content>
-      <h1>Recs</h1>
+      <h1>Your recommendations</h1>
       <div v-if="user">
         <v-card
           class="mx-auto mb-4"
