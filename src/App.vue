@@ -1,30 +1,41 @@
 <template>
-  <v-app id="inspire">
-    <Drawer />
-    <TopBar />
-    <v-content class="mx-4 mb-4">
+  <v-app
+    id="inspire"
+    :style="{ background: $vuetify.theme.themes[theme].background }"
+  >
+    <SideBar v-if="isLoggedIn" />
+    <v-content class="mx-4 my-4">
       <router-view> </router-view>
     </v-content>
 
-    <Footer />
+    <Footer v-if="isLoggedIn" />
   </v-app>
 </template>
 
 <script>
-import Drawer from '@/components/Drawer';
-import TopBar from '@/components/TopBar';
+import SideBar from '@/components/SideBar';
 import Footer from '@/components/Footer';
 
 export default {
   name: 'App',
   components: {
-    Drawer,
-    TopBar,
-    Footer
+    SideBar,
+    Footer,
   },
   data: () => ({
-    drawer: false
-  })
+    drawer: false,
+  }),
+  computed: {
+    theme() {
+      return this.$vuetify.theme.dark ? 'dark' : 'light';
+    },
+    isLoggedIn() {
+      return this.$store.state.user;
+    },
+  },
+  created() {
+    this.$store.dispatch('getUser');
+  },
 };
 </script>
 

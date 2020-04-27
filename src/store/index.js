@@ -9,7 +9,8 @@ export default new Vuex.Store({
   state: {
     drawer: false,
     user: null,
-    baseURL: 'https://recmailer.herokuapp.com/api/v1/',
+    isLoggedIn: false,
+    baseURL: 'http://localhost:5000/api/v1/',
   },
   mutations: {
     adjustDrawer: state => (state.drawer = !state.drawer),
@@ -27,7 +28,6 @@ export default new Vuex.Store({
     },
     ADD_CREDITS: (state, user) => {
       state.user = user;
-      router.push('/dashboard');
     },
     EMAIL_SENT: state => router.push('/sent'),
   },
@@ -46,11 +46,16 @@ export default new Vuex.Store({
       });
       commit('LOGOUT');
     },
-    addCredits: async ({ commit, state }) => {
-      const { data } = await axios.get(`${state.baseURL}user/add-credits`, {
-        withCredentials: true,
-      });
-      const user = data.user;
+    addCredits: async ({ commit, state }, amount) => {
+      const { data } = await axios.post(
+        `${state.baseURL}user/add-credits`,
+        amount,
+        {
+          withCredentials: true,
+        }
+      );
+
+      const user = data.data;
       commit('ADD_CREDITS', user);
     },
     createRec: async ({ commit, state }, recData) => {

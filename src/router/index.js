@@ -22,6 +22,24 @@ const routes = [
     },
   },
   {
+    path: '/request',
+    name: 'Request',
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/RequestRec.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Profile.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
     path: '/rec/:recId',
     name: 'SendRec',
     // route level code-splitting
@@ -36,9 +54,6 @@ const routes = [
   {
     path: '/sent',
     name: 'Sent',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Sent.vue'),
     meta: {
@@ -48,9 +63,6 @@ const routes = [
   {
     path: '/add-credits',
     name: 'AddCredits',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/AddCredits.vue'),
     meta: {
@@ -60,9 +72,6 @@ const routes = [
   {
     path: '/recommend/:recId',
     name: 'WriteRec',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/WriteRec.vue'),
   },

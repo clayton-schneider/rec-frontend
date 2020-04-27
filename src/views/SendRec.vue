@@ -3,31 +3,30 @@
     <v-content>
       <h1>Send rec</h1>
       <p>{{ feedback }}</p>
-      <v-row justify="center">
-        <v-card outlined>
-          <v-card-title>Send Rec</v-card-title>
-          <v-card-text>
-            <v-form class="px-3" ref="form">
-              <v-text-field
-                label="Name"
-                :rules="inputRules"
-                prepend-icon="mdi-account-arrow-right"
-                v-model="toName"
-              ></v-text-field>
-              <v-text-field
-                label="Email"
-                prepend-icon="mdi-email"
-                v-model="toEmail"
-              ></v-text-field>
-              <v-row justify="start"
-                ><v-btn depressed class="mx-auto" @click="submit"
-                  >Send Rec</v-btn
-                >
-              </v-row>
-            </v-form>
-          </v-card-text>
-        </v-card>
-      </v-row>
+
+      <v-card color="secondary" class="mx-auto" max-width="500">
+        <v-card-title>Send Rec</v-card-title>
+        <v-card-text>
+          <v-form class="px-3" ref="form">
+            <v-text-field
+              label="Name"
+              :rules="inputRules"
+              prepend-icon="mdi-account-arrow-right"
+              v-model="toName"
+            ></v-text-field>
+            <v-text-field
+              label="Email"
+              prepend-icon="mdi-email"
+              v-model="toEmail"
+            ></v-text-field>
+            <v-row justify="start"
+              ><v-btn text color="accent" class="mx-auto" @click="submit"
+                >Send Rec</v-btn
+              >
+            </v-row>
+          </v-form>
+        </v-card-text>
+      </v-card>
     </v-content>
   </div>
 </template>

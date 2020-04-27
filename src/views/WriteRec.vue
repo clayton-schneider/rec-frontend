@@ -1,44 +1,60 @@
 <template>
   <div class="write-rec">
-    <v-content v-if="rec">
-      <h1>Write letter of recommendation</h1>
+    <v-container v-if="rec">
+      <h1 class="title">Write letter of recommendation</h1>
 
-      <v-card class="mx-auto mb-4" outlined max-width="500">
+      <v-card class="mx-auto mb-4" color="secondary" max-width="500">
         <v-card-text>
           <v-form class="px-3" ref="form">
             <v-text-field
               label="Name"
+              color="accent"
               v-model="rec.authorName"
               prepend-icon="mdi-account"
             ></v-text-field>
+
+            <v-file-input
+              @change="readFile"
+              v-model="file"
+              v-show="false"
+              id="file-input"
+            ></v-file-input>
+
             <v-textarea
+              color="accent"
               label="Recommnedation"
               v-model="rec.recommendation"
               prepend-icon="mdi-typewritter"
             >
             </v-textarea>
+
             <v-text-field
+              color="accent"
               label="Signature"
               v-model="rec.signature"
               prepend-icon="mdi-pen-lock"
             ></v-text-field>
-            <v-row justify="start"
-              ><v-btn depressed class="mx-auto" @click="submit"
-                >Submit Rec</v-btn
+            <v-row justify="space-between">
+              <v-btn outlined :loading="loading" @click="clickUpload"
+                >Upload PDF</v-btn
               >
+              <v-btn text color="accent" @click="submit">Submit Rec</v-btn>
             </v-row>
           </v-form>
         </v-card-text>
       </v-card>
-    </v-content>
+    </v-container>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+
 export default {
   data() {
     return {
+      file: null,
+      loading: false,
       rec: null,
     };
   },
@@ -58,6 +74,24 @@ export default {
         submitted: true,
       });
       this.$router.push('/sent');
+    },
+    async readFile() {
+      this.loading = true;
+      let formData = new FormData();
+      formData.append('file', this.file);
+      const { data } = await axios.post(
+        `${this.$store.state.baseURL}recs/read-file`,
+        formData,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        }
+      );
+      const recommendation = data.data;
+      this.loading = false;
+      this.rec.recommendation = recommendation;
+    },
+    clickUpload() {
+      document.getElementById('file-input').click();
     },
   },
 };
