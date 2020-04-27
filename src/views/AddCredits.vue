@@ -12,7 +12,7 @@
                     color="accent"
                     v-for="option in options"
                     :key="option.amount"
-                    :disabled="isDisabled"
+                    :disabled="isRadioDisabled"
                     :label="`${option.amount} Credits`"
                   ></v-radio>
                 </v-radio-group>
@@ -27,7 +27,7 @@
               <v-btn
                 @click.prevent="submit"
                 small
-                :disabled="isDisabled"
+                :disabled="isBtnDisabled"
                 :loading="isLoading"
                 color="accent"
                 text
@@ -69,7 +69,8 @@ export default {
         { amount: 10, price: '$10.00' },
       ],
       paymentIntent: null,
-      isDisabled: true,
+      isRadioDisabled: true,
+      isBtnDisabled: true,
       isLoading: false,
       feedback: null,
     };
@@ -103,8 +104,12 @@ export default {
       if (!card) card = elements.create('card', { style });
       card.mount(this.$refs.card);
 
+      card.on('ready', e => {
+        this.isRadioDisabled = false;
+      });
+
       card.on('change', e => {
-        this.isDisabled = e.empty;
+        this.isBtnDisabled = e.empty;
       });
     },
     async payWithCard(stripe, card, clientSecret) {

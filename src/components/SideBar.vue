@@ -1,9 +1,10 @@
 <template>
   <v-navigation-drawer
-    class="d-none d-sm-flex"
+    class="d-xs-none d-sm-flex"
     expand-on-hover
     mini-variant
-    absolute
+    app
+    mobile-break-point="600"
   >
     <v-list dense nav class="py-0">
       <v-list-item two-line class="px-0">

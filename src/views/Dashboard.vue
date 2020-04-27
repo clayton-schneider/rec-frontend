@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <v-container>
-      <h1 class="title">Your recommendations</h1>
+      <h1 class="title text-center my-8">Your recommendations</h1>
       <div v-if="user">
         <v-card
           color="secondary"

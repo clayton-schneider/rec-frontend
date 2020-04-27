@@ -1,7 +1,7 @@
 <template>
   <div class="write-rec">
     <v-container v-if="rec">
-      <h1 class="title">Write letter of recommendation</h1>
+      <h1 class="title text-center my-8">Write letter of recommendation</h1>
 
       <v-card class="mx-auto mb-4" color="secondary" max-width="500">
         <v-card-text>

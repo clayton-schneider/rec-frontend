@@ -1,21 +1,23 @@
 <template>
-  <div class="send-rec">
-    <v-content>
-      <h1>Send rec</h1>
+  <v-container class="fill-height">
+    <v-row align="center">
       <p>{{ feedback }}</p>
 
-      <v-card color="secondary" class="mx-auto" max-width="500">
+      <v-card color="secondary" class="mx-auto" width="700">
         <v-card-title>Send Rec</v-card-title>
         <v-card-text>
           <v-form class="px-3" ref="form">
             <v-text-field
               label="Name"
-              :rules="inputRules"
+              :rules="nameRules"
+              color="accent"
               prepend-icon="mdi-account-arrow-right"
               v-model="toName"
             ></v-text-field>
             <v-text-field
               label="Email"
+              color="accent"
+              :rules="emailRules"
               prepend-icon="mdi-email"
               v-model="toEmail"
             ></v-text-field>
@@ -27,8 +29,8 @@
           </v-form>
         </v-card-text>
       </v-card>
-    </v-content>
-  </div>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -40,7 +42,11 @@ export default {
       toName: '',
       toEmail: '',
       feedback: null,
-      inputRules: [v => v.length > 0 || 'Please enter a name'],
+      nameRules: [v => !!v || 'Name is required'],
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      ],
     };
   },
   computed: {
