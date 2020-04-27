@@ -15,8 +15,8 @@
       <v-icon>mdi-plus</v-icon>
     </v-btn>
     <v-spacer></v-spacer>
-    <v-btn class="remove-width" to="/profile">
-      <v-icon>mdi-account-outline</v-icon>
+    <v-btn class="remove-width" to="/add-credits">
+      <v-icon>mdi-credit-card-plus</v-icon>
     </v-btn>
   </v-bottom-navigation>
 </template>
