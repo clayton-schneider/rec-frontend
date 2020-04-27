@@ -90,7 +90,7 @@ router.beforeEach(async (to, from, next) => {
       next();
     } else {
       try {
-        user = await axios.get(`${store.state.baseURL}auth/me`, {
+        user = await axios.get(`${process.env.VUE_APP_API_URL}/auth/me`, {
           withCredentials: true,
         });
         next();

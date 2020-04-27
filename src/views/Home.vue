@@ -3,7 +3,7 @@
     <v-content>
       <v-row justify="center">
         <h1 class="mr-5">Welcome</h1>
-        <v-btn color="primary" :href="`${backendURL}auth/linkedin`"
+        <v-btn color="primary" :href="`${backendURL}/auth/linkedin`"
           ><v-icon class="mr-4">mdi-linkedin</v-icon>Login with LinkedIn</v-btn
         >
       </v-row>
@@ -75,10 +75,10 @@
 <script>
 export default {
   name: 'Home',
-  computed: {
-    backendURL() {
-      return this.$store.state.baseURL;
-    },
+  data() {
+    return {
+      backendURL: process.env.VUE_APP_API_URL,
+    };
   },
   methods: {
     login() {

@@ -87,21 +87,19 @@ export default {
         return;
       }
       const { data } = await axios.put(
-        `${this.$store.state.baseURL}payments/update-payment-intent/${this.paymentIntent.id}`,
+        `${process.env.VUE_APP_API_URL}/payments/update-payment-intent/${this.paymentIntent.id}`,
         { newCredits: this.options[this.credits].amount },
         { withCredentials: true }
       );
       this.paymentIntent = data;
-      console.log(this.paymentIntent);
     },
     async initStripe() {
       const { data } = await axios.post(
-        `${this.$store.state.baseURL}payments/create-payment-intent`,
+        `${process.env.VUE_APP_API_URL}/payments/create-payment-intent`,
         { credits: this.options[this.credits].amount },
         { withCredentials: true }
       );
       this.paymentIntent = data;
-      console.log(this.paymentIntent);
       if (!card) card = elements.create('card', { style });
       card.mount(this.$refs.card);
 

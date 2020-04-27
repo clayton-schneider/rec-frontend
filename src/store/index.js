@@ -10,7 +10,6 @@ export default new Vuex.Store({
     drawer: false,
     user: null,
     isLoggedIn: false,
-    baseURL: 'http://localhost:5000/api/v1/',
   },
   mutations: {
     adjustDrawer: state => (state.drawer = !state.drawer),
@@ -35,20 +34,23 @@ export default new Vuex.Store({
     adjustDrawer: context => context.commit('adjustDrawer'),
     getUser: async ({ commit, state }) => {
       if (state.user) return;
-      const { data } = await axios.get(`${state.baseURL}auth/me`, {
-        withCredentials: true,
-      });
+      const { data } = await axios.get(
+        `${process.env.VUE_APP_API_URL}/auth/me`,
+        {
+          withCredentials: true,
+        }
+      );
       commit('SET_USER_DATA', data.data);
     },
     logout: async ({ commit, state }) => {
-      await axios.get(`${state.baseURL}auth/logout`, {
+      await axios.get(`${process.env.VUE_APP_API_URL}/auth/logout`, {
         withCredentials: true,
       });
       commit('LOGOUT');
     },
     addCredits: async ({ commit, state }, amount) => {
       const { data } = await axios.post(
-        `${state.baseURL}user/add-credits`,
+        `${process.env.VUE_APP_API_URL}/user/add-credits`,
         amount,
         {
           withCredentials: true,
@@ -59,9 +61,13 @@ export default new Vuex.Store({
       commit('ADD_CREDITS', user);
     },
     createRec: async ({ commit, state }, recData) => {
-      const { data } = await axios.post(`${state.baseURL}recs`, recData, {
-        withCredentials: true,
-      });
+      const { data } = await axios.post(
+        `${process.env.VUE_APP_API_URL}/recs`,
+        recData,
+        {
+          withCredentials: true,
+        }
+      );
       commit('EMAIL_SENT');
     },
   },

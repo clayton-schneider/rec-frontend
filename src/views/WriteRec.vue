@@ -61,13 +61,13 @@ export default {
   async created() {
     const recId = this.$route.params.recId;
     const { data } = await axios.get(
-      `${this.$store.state.baseURL}recs/${recId}`
+      `${process.env.VUE_APP_API_URL}/recs/${recId}`
     );
     this.rec = data.data;
   },
   methods: {
     async submit() {
-      await axios.put(`${this.$store.state.baseURL}recs/${this.rec._id}`, {
+      await axios.put(`${process.env.VUE_APP_API_URL}/recs/${this.rec._id}`, {
         authorName: this.rec.authorName,
         recommendation: this.rec.recommendation,
         signature: this.rec.signature,
@@ -80,7 +80,7 @@ export default {
       let formData = new FormData();
       formData.append('file', this.file);
       const { data } = await axios.post(
-        `${this.$store.state.baseURL}recs/read-file`,
+        `${process.env.VUE_APP_API_URL}/recs/read-file`,
         formData,
         {
           headers: { 'Content-Type': 'multipart/form-data' },

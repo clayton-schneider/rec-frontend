@@ -54,7 +54,7 @@ export default {
         if (this.credits > 0) {
           this.feedback = null;
           const { data } = await axios.post(
-            `${this.$store.state.baseURL}recs/send/${this.$route.params.recId}`,
+            `${process.env.VUE_APP_API_URL}/recs/send/${this.$route.params.recId}`,
             {
               toName: this.toName,
               toEmail: this.toEmail,
