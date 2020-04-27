@@ -69,7 +69,10 @@ export default {
               withCredentials: true,
             }
           );
-          if (data.success) this.$router.push('/sent');
+          if (data.success) {
+            this.$store.commit('SET_USER_DATA', data.data);
+            this.$router.push('/sent');
+          }
           this.feedback =
             'There was an error sending you email please try again';
         } else {
