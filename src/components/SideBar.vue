@@ -9,7 +9,7 @@
     <v-list dense nav class="py-0">
       <v-list-item two-line class="px-0">
         <v-list-item-avatar>
-          <img src="https://randomuser.me/api/portraits/men/81.jpg" />
+          <img :src="user.profilePicture" />
         </v-list-item-avatar>
 
         <v-list-item-content>
