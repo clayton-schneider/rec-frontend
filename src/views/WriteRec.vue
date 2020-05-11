@@ -22,7 +22,7 @@
 
             <v-textarea
               color="accent"
-              label="Recommnedation"
+              label="Recommendation"
               v-model="rec.recommendation"
               prepend-icon="mdi-typewritter"
             >

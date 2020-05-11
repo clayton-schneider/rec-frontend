@@ -4,6 +4,29 @@
       <h1 class="title text-center my-8">Your recommendations</h1>
       <div v-if="user">
         <v-card
+          v-if="!user.recs"
+          color="secondary"
+          class="mx-auto mb-4"
+          max-width="500"
+        >
+          <v-card-title class="subtitle-1"
+            >You have no recommendations. Make your first request.</v-card-title
+          >
+          <v-card-actions class="mt-6">
+            <v-btn
+              absolute
+              bottom
+              right
+              text
+              small
+              color="accent"
+              :to="{ name: 'Request' }"
+            >
+              Request <v-icon right>mdi-arrow-right</v-icon>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+        <v-card
           color="secondary"
           class="mx-auto mb-4"
           max-width="500"

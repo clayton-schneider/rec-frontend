@@ -4,7 +4,7 @@
       <p>{{ feedback }}</p>
 
       <v-card color="secondary" class="mx-auto" width="700">
-        <v-card-title>Send Rec</v-card-title>
+        <v-card-title>Send recommendation to:</v-card-title>
         <v-card-text>
           <v-form class="px-3" ref="form">
             <v-text-field

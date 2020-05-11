@@ -2,7 +2,7 @@
   <v-container class="fill-height">
     <v-row align="center">
       <v-card color="secondary" class="mx-auto" width="700">
-        <v-card-title>Request a new Rec</v-card-title>
+        <v-card-title>Request a new recommendation from:</v-card-title>
         <v-card-text>
           <v-form class="px-3" ref="form">
             <v-text-field
