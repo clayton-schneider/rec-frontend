@@ -9,6 +9,12 @@
           ><v-icon class="mr-4">mdi-linkedin</v-icon>Login with LinkedIn</v-btn
         >
       </v-row>
+      <v-row justify="center">
+        <p>
+          This app won't work in Chrome due to their recent CORS requirement
+          changes. Please try in another browser.
+        </p>
+      </v-row>
     </v-container>
   </div>
 </template>
